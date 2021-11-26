@@ -1,0 +1,39 @@
+{
+	"expo": {
+		"name": "DnDMe",
+		"slug": "DnDMe",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/DnDMeIconNEW.png",
+		"splash": {
+			"image": "./assets/DnDMeIconSplashNEW.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.kirkkoster.dndme",
+			"buildNumber": "0.5.2",
+			"config": {
+				"googleMobileAdsAppId": "ca-app-pub-3701578112584567~5888507574"
+			}
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#FFFFFF"
+			},
+			"package": "com.kirkkoster.dndme",
+			"config": {
+				"googleMobileAdsAppId": "ca-app-pub-3701578112584567~5888507574"
+			}
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		}
+	}
+}

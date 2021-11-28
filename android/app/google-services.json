@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "424775935486",
+    "project_id": "dndme-83be6",
+    "storage_bucket": "dndme-83be6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424775935486:android:f3d0352f37a3ade4a8ccaf",
+        "android_client_info": {
+          "package_name": "com.kirkkoster.dndme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424775935486-4ac562c12i70r8umjj86a4p2ncns6skr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMB-zUIqW71FkfnWG9N8w10kt5e_d4gw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424775935486-4ac562c12i70r8umjj86a4p2ncns6skr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

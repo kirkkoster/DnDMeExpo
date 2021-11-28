@@ -25,8 +25,15 @@ import Constants from 'expo-constants';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const onFailToRecieveAd = error => console.log(error);
-const testID = 'ca-app-pub-3940256099942544/2934735716';
+const testID = 'ca-app-pub-3940256099942544/6300978111';
 const productionID = 'ca-app-pub-3701578112584567/7661588394';
+
+const adUnitID = Platform.select({
+	ios: 'ca-app-pub-3701578112584567/7661588394',
+	android: 'ca-app-pub-3701578112584567/9890583331',
+});
+
+// expo build:android -t app-bundle // SUCCESSFUL BUILD LINE I USED LAST
 
 const MyTabs = () => {
 	return (
@@ -120,12 +127,20 @@ const App = () => {
 					testDeviceID='ca-app-pub-3940256099942544/2934735716'
 					didFailToReceiveAdWithError={onFailToRecieveAd}
 				/> */}
-				<AdMobBanner
+				{/* <AdMobBanner
 					style={{ alignItems: 'center' }}
 					bannerSize='smartBannerPortrait'
-					adUnitID={productionID} // for testing use testID // for production use productionID
+					adUnitID={testID} // for testing use testID // for production use productionID
 					servePersonalizedAds // true or false
 					onDidFailToReceiveAdWithError={this.bannerError}
+				/> */}
+				<AdMobBanner
+					adUnitID={testID} // for testing use testID // for production use adUnitID
+					bannerSize='smartBannerPortrait'
+					servePersonalizedAds={true}
+					style={{
+						padding: 10,
+					}}
 				/>
 			</View>
 		</NavigationContainer>

@@ -135,7 +135,7 @@ const App = () => {
 					onDidFailToReceiveAdWithError={this.bannerError}
 				/> */}
 				<AdMobBanner
-					adUnitID={testID} // for testing use testID // for production use adUnitID
+					adUnitID={adUnitID} // for testing use testID // for production use adUnitID
 					bannerSize='smartBannerPortrait'
 					servePersonalizedAds={true}
 					style={{

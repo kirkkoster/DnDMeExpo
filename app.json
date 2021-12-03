@@ -17,9 +17,12 @@
 		"ios": {
 			"supportsTablet": true,
 			"bundleIdentifier": "com.kirkkoster.dndme",
-			"buildNumber": "0.5.2",
+			"buildNumber": "0.5.4",
 			"config": {
 				"googleMobileAdsAppId": "ca-app-pub-3701578112584567~5888507574"
+			},
+			"infoPlist": {
+				"NSUserTrackingUsageDescription": "We use Tracking to fix bugs and improve your experience."
 			}
 		},
 		"android": {
@@ -28,12 +31,21 @@
 				"backgroundColor": "#FFFFFF"
 			},
 			"package": "com.kirkkoster.dndme",
+			"versionCode": 5,
 			"config": {
 				"googleMobileAdsAppId": "ca-app-pub-3701578112584567~8644826568"
 			}
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
-		}
+		},
+		"plugins": [
+			[
+				"expo-tracking-transparency",
+				{
+					"userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+				}
+			]
+		]
 	}
 }

@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,6 +22,10 @@ import EquipmentDetailScreen from './src/screens/EquipmentDetailScreen';
 import MagicItemDetailScreen from './src/screens/MagicItemDetailScreen';
 import { AdMobBanner } from 'expo-ads-admob';
 import Constants from 'expo-constants';
+import {
+	isAvailable,
+	requestTrackingPermissionsAsync,
+} from 'expo-tracking-transparency';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,6 +76,18 @@ const MyTabs = () => {
 };
 
 const App = () => {
+	useEffect(() => {
+		(async () => {
+			const { status } = await requestTrackingPermissionsAsync();
+			console.log('status: ', status);
+			if (status === 'granted') {
+				console.log('Permission to track granted');
+			} else {
+				console.log('permission to track denied');
+			}
+		})();
+	}, []);
+
 	return (
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName='Home'>

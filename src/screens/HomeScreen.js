@@ -18,8 +18,18 @@ import { Feather } from '@expo/vector-icons';
 import { FAB } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 
 const HomeScreen = ({ navigation }) => {
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const { status } = await requestTrackingPermissionsAsync();
+	// 		if (status === 'granted') {
+	// 			console.log('Yay! I have user permission to track data');
+	// 		}
+	// 	})();
+	// }, []);
+
 	const axios = require('axios');
 	const [term, setTerm] = useState('');
 	const [result, setResult] = useState([]);

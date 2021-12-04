@@ -11,10 +11,14 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
-import { FAB } from 'react-native-paper';
+import { DarkTheme, FAB } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DarkMode from '../styles/DarkMode';
+import { useTheme } from '@react-navigation/native';
+import { colors } from 'react-native-elements';
+import { colorsDark } from 'react-native-elements/dist/config';
+import darkColors from 'react-native-elements/dist/config/colorsDark';
+import { Appearance } from 'react-native-appearance';
 
 const HomeScreen = ({ navigation }) => {
 	const axios = require('axios');
@@ -257,9 +261,21 @@ const HomeScreen = ({ navigation }) => {
 			.catch(error => console.error(`Error: ${error}`));
 	};
 
+	const { colors } = useTheme();
+
+	function styleToggle() {
+		spellsEnabled ? styles.darkToggledText : styles.toggledText;
+	}
+
 	return (
 		<>
-			<View style={styles.searchBar}>
+			<View
+				style={
+					Appearance.getColorScheme() === 'dark'
+						? styles.darkSearchBar
+						: styles.searchBar
+				}
+			>
 				<Feather style={styles.iconStyle} name='search' />
 				<TextInput
 					autoCapitalize='none'
@@ -291,46 +307,142 @@ const HomeScreen = ({ navigation }) => {
 					<View style={styles.filterViewTop}>
 						<TouchableOpacity onPress={toggleSpells}>
 							{spellsEnabled ? (
-								<Text style={styles.toggledText}> Spells </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkToggledText
+											: styles.toggledText
+									}
+								>
+									Spells
+								</Text>
 							) : (
-								<Text style={styles.unToggledText}> Spells </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkUnToggledText
+											: styles.unToggledText
+									}
+								>
+									Spells
+								</Text>
 							)}
 						</TouchableOpacity>
 						<TouchableOpacity onPress={toggleClass}>
 							{classEnabled ? (
-								<Text style={styles.toggledText}> Classes </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkToggledText
+											: styles.toggledText
+									}
+								>
+									Classes
+								</Text>
 							) : (
-								<Text style={styles.unToggledText}> Classes </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkUnToggledText
+											: styles.unToggledText
+									}
+								>
+									Classes
+								</Text>
 							)}
 						</TouchableOpacity>
 						<TouchableOpacity onPress={toggleMagicItem}>
 							{magicItemEnabled ? (
-								<Text style={styles.toggledText}> Magic Items </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkToggledText
+											: styles.toggledText
+									}
+								>
+									Magic Items
+								</Text>
 							) : (
-								<Text style={styles.unToggledText}> Magic Items </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkUnToggledText
+											: styles.unToggledText
+									}
+								>
+									Magic Items
+								</Text>
 							)}
 						</TouchableOpacity>
 					</View>
 					<View style={styles.filterViewBottom}>
 						<TouchableOpacity onPress={toggleEquipment}>
 							{equipmentEnabled ? (
-								<Text style={styles.toggledText}> Equipment </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkToggledText
+											: styles.toggledText
+									}
+								>
+									Equipment
+								</Text>
 							) : (
-								<Text style={styles.unToggledText}> Equipment </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkUnToggledText
+											: styles.unToggledText
+									}
+								>
+									Equipment
+								</Text>
 							)}
 						</TouchableOpacity>
 						<TouchableOpacity onPress={toggleRace}>
 							{raceEnabled ? (
-								<Text style={styles.toggledText}> Races </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkToggledText
+											: styles.toggledText
+									}
+								>
+									Races
+								</Text>
 							) : (
-								<Text style={styles.unToggledText}> Races </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkUnToggledText
+											: styles.unToggledText
+									}
+								>
+									Races
+								</Text>
 							)}
 						</TouchableOpacity>
 						<TouchableOpacity onPress={toggleSubrace}>
 							{subRaceEnabled ? (
-								<Text style={styles.toggledText}> Subraces </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkToggledText
+											: styles.toggledText
+									}
+								>
+									Subraces
+								</Text>
 							) : (
-								<Text style={styles.unToggledText}> Subraces </Text>
+								<Text
+									style={
+										Appearance.getColorScheme() === 'dark'
+											? styles.darkUnToggledText
+											: styles.unToggledText
+									}
+								>
+									Subraces
+								</Text>
 							)}
 						</TouchableOpacity>
 					</View>
@@ -420,6 +532,15 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		marginBottom: 10,
 	},
+	darkSearchBar: {
+		backgroundColor: '#404040',
+		height: 50,
+		borderRadius: 10,
+		marginHorizontal: 15,
+		flexDirection: 'row',
+		marginTop: 100,
+		marginBottom: 10,
+	},
 	dndTemplate: {
 		height: 100,
 		width: '100%',
@@ -456,10 +577,23 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		padding: 10,
 	},
+	darkToggledText: {
+		fontSize: 26,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		padding: 10,
+		color: 'white',
+	},
 	unToggledText: {
 		fontSize: 18,
 		textAlign: 'center',
 		padding: 10,
+	},
+	darkUnToggledText: {
+		fontSize: 18,
+		textAlign: 'center',
+		padding: 10,
+		color: 'white',
 	},
 	parameterFont: {
 		fontSize: 20,

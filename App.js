@@ -21,6 +21,8 @@ import FeatsDetailScreen from './src/screens/FeatsDetailScreen';
 import EquipmentDetailScreen from './src/screens/EquipmentDetailScreen';
 import MagicItemDetailScreen from './src/screens/MagicItemDetailScreen';
 import { AdMobBanner } from 'expo-ads-admob';
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import {
 	isAvailable,
@@ -88,79 +90,83 @@ const App = () => {
 		})();
 	}, []);
 
+	const scheme = useColorScheme();
+
 	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName='Home'>
-				<Stack.Screen
-					name='SpellDetail'
-					component={SpellDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='ItemDetail'
-					component={ItemDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='ClassDetail'
-					component={ClassDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='RaceDetail'
-					component={RaceDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='SubRaceDetail'
-					component={SubRaceDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='EquipmentDetail'
-					component={EquipmentDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='FeatsDetail'
-					component={FeatsDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='MagicItemDetail'
-					component={MagicItemDetailScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-				<Stack.Screen
-					name='Home'
-					component={HomeScreen}
-					options={{ title: '', headerShown: false }}
-				/>
-			</Stack.Navigator>
-			<View>
-				{/* <AdMobBanner
+		<AppearanceProvider>
+			<NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+				<Stack.Navigator initialRouteName='Home'>
+					<Stack.Screen
+						name='SpellDetail'
+						component={SpellDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='ItemDetail'
+						component={ItemDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='ClassDetail'
+						component={ClassDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='RaceDetail'
+						component={RaceDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='SubRaceDetail'
+						component={SubRaceDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='EquipmentDetail'
+						component={EquipmentDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='FeatsDetail'
+						component={FeatsDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='MagicItemDetail'
+						component={MagicItemDetailScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+					<Stack.Screen
+						name='Home'
+						component={HomeScreen}
+						options={{ title: '', headerShown: false }}
+					/>
+				</Stack.Navigator>
+				<View>
+					{/* <AdMobBanner
 					adSize='largeBanner'
 					adUnitID='ca-app-pub-3701578112584567/7661588394'
 					testDeviceID='ca-app-pub-3940256099942544/2934735716'
 					didFailToReceiveAdWithError={onFailToRecieveAd}
 				/> */}
-				{/* <AdMobBanner
+					{/* <AdMobBanner
 					style={{ alignItems: 'center' }}
 					bannerSize='smartBannerPortrait'
 					adUnitID={testID} // for testing use testID // for production use productionID
 					servePersonalizedAds // true or false
 					onDidFailToReceiveAdWithError={this.bannerError}
 				/> */}
-				<AdMobBanner
-					adUnitID={adUnitID} // for testing use testID // for production use adUnitID
-					bannerSize='smartBannerPortrait'
-					servePersonalizedAds={true}
-					style={{
-						padding: 10,
-					}}
-				/>
-			</View>
-		</NavigationContainer>
+					<AdMobBanner
+						adUnitID={adUnitID} // for testing use testID // for production use adUnitID
+						bannerSize='smartBannerPortrait'
+						servePersonalizedAds={true}
+						style={{
+							padding: 10,
+						}}
+					/>
+				</View>
+			</NavigationContainer>
+		</AppearanceProvider>
 	);
 };
 

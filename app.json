@@ -18,6 +18,7 @@
 			"supportsTablet": true,
 			"bundleIdentifier": "com.kirkkoster.dndme",
 			"buildNumber": "0.5.4",
+			"userInterfaceStyle": "automatic",
 			"config": {
 				"googleMobileAdsAppId": "ca-app-pub-3701578112584567~5888507574"
 			},

@@ -6,30 +6,17 @@ import {
 	FlatList,
 	TextInput,
 	TouchableOpacity,
-	Image,
 	ImageBackground,
-	Switch,
 	Alert,
-	TouchableHighlight,
-	Pressable,
 } from 'react-native';
 import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
 import { FAB } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
+import DarkMode from '../styles/DarkMode';
 
 const HomeScreen = ({ navigation }) => {
-	// useEffect(() => {
-	// 	(async () => {
-	// 		const { status } = await requestTrackingPermissionsAsync();
-	// 		if (status === 'granted') {
-	// 			console.log('Yay! I have user permission to track data');
-	// 		}
-	// 	})();
-	// }, []);
-
 	const axios = require('axios');
 	const [term, setTerm] = useState('');
 	const [result, setResult] = useState([]);
@@ -39,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
 	const [subRaceEnabled, setSubRaceEnabled] = useState(false);
 	const [magicItemEnabled, setMagicItemEnabled] = useState(false);
 	const [equipmentEnabled, setEquipmentEnabled] = useState(false);
+	const [noResults, setNoResults] = useState(false);
 	const [error, setError] = useState();
 	const toggleSpells = () => {
 		setSpellsEnabled(previousState => !previousState);
@@ -159,7 +147,12 @@ const HomeScreen = ({ navigation }) => {
 
 			.then(response => {
 				const spells = response.data.results;
-				setResult(spells);
+				if (spells.length) {
+					setResult(spells);
+					setNoResults(false);
+				} else {
+					setNoResults(true);
+				}
 			})
 			.catch(error => console.error(`Error: ${error}`));
 	};
@@ -174,7 +167,12 @@ const HomeScreen = ({ navigation }) => {
 
 			.then(response => {
 				const spells = response.data.results;
-				setResult(spells);
+				if (spells.length) {
+					setResult(spells);
+					setNoResults(false);
+				} else {
+					setNoResults(true);
+				}
 			})
 			.catch(error => console.error(`Error: ${error}`));
 	};
@@ -189,7 +187,12 @@ const HomeScreen = ({ navigation }) => {
 
 			.then(response => {
 				const spells = response.data.results;
-				setResult(spells);
+				if (spells.length) {
+					setResult(spells);
+					setNoResults(false);
+				} else {
+					setNoResults(true);
+				}
 			})
 			.catch(error => console.error(`Error: ${error}`));
 	};
@@ -204,7 +207,12 @@ const HomeScreen = ({ navigation }) => {
 
 			.then(response => {
 				const subraces = response.data.results;
-				setResult(subraces);
+				if (subraces.length) {
+					setResult(subraces);
+					setNoResults(false);
+				} else {
+					setNoResults(true);
+				}
 			})
 			.catch(error => console.error(`Error: ${error}`));
 	};
@@ -219,7 +227,12 @@ const HomeScreen = ({ navigation }) => {
 
 			.then(response => {
 				const equipment = response.data.results;
-				setResult(equipment);
+				if (equipment.length) {
+					setResult(equipment);
+					setNoResults(false);
+				} else {
+					setNoResults(true);
+				}
 			})
 			.catch(error => console.error(`Error: ${error}`));
 	};
@@ -234,7 +247,12 @@ const HomeScreen = ({ navigation }) => {
 
 			.then(response => {
 				const magicItem = response.data.results;
-				setResult(magicItem);
+				if (magicItem.length) {
+					setResult(magicItem);
+					setNoResults(false);
+				} else {
+					setNoResults(true);
+				}
 			})
 			.catch(error => console.error(`Error: ${error}`));
 	};
@@ -253,16 +271,22 @@ const HomeScreen = ({ navigation }) => {
 					onSubmitEditing={() => getResults(term)}
 				/>
 				<TouchableOpacity onPress={() => setTerm('')}>
-					<MaterialCommunityIcons
-						name='close-circle'
-						size={24}
-						color='gray'
-						style={styles.clearText}
-					/>
+					{term.length ? (
+						<MaterialCommunityIcons
+							name='close-circle'
+							size={24}
+							color='gray'
+							style={styles.clearText}
+						/>
+					) : null}
 				</TouchableOpacity>
 			</View>
+			<View></View>
 
 			<View style={styles.container}>
+				{noResults ? (
+					<Text style={{ color: 'red', textAlign: 'center' }}>No results</Text>
+				) : null}
 				<View style={styles.checkboxContainer}>
 					<View style={styles.filterViewTop}>
 						<TouchableOpacity onPress={toggleSpells}>
